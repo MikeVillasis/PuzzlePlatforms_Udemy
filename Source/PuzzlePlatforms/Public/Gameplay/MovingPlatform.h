@@ -20,4 +20,6 @@ public:
 		float MovingRate;
 
 	virtual void Tick(float DeltaSeconds) override;
+
+	void MoveActorConstantly(float TickSeconds);
 };

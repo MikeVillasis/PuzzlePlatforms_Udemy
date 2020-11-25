@@ -15,10 +15,24 @@ AMovingPlatform::AMovingPlatform()
 void AMovingPlatform::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	if (HasAuthority() == true)
+	{
+		//Server has got the authority throughout the game, for checking:
+		MoveActorConstantly(DeltaSeconds);
+	}
 	
+	
+
+}
+
+void AMovingPlatform::MoveActorConstantly(float TickSeconds)
+{
 	FVector UpdatedPlatformLocation = GetActorLocation();
-// Debugging Speed	GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Red, FString::SanitizeFloat(UpdatedPlatformLocation.Y));
-	UpdatedPlatformLocation.Y += MovingRate * DeltaSeconds;
+	// Debugging Speed	GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Red, FString::SanitizeFloat(UpdatedPlatformLocation.Y));
+	UpdatedPlatformLocation.Y += MovingRate * TickSeconds;
 	SetActorLocation(UpdatedPlatformLocation);
-// Debugging Speed	GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Cyan, FString::SanitizeFloat(UpdatedPlatformLocation.Y));
+	// Debugging Speed	GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Cyan, FString::SanitizeFloat(UpdatedPlatformLocation.Y));
+
+	SetActorLocation(UpdatedPlatformLocation);
+	
 }
